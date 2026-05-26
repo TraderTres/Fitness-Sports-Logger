@@ -8,7 +8,7 @@ import type { ActivityLog, ActivityPayload, ActivityType } from '../types/activi
 import { ACTIVITY_TYPE_LABELS } from '../types/activity'
 
 const FILTER_OPTIONS: Array<{ value: 'all' | ActivityType; label: string }> = [
-  { value: 'all',          label: 'All' },
+  { value: 'all',           label: 'All' },
   { value: 'weightlifting', label: '🏋️ Gym' },
   { value: 'basketball',   label: '🏀 Basketball' },
   { value: 'jogging',      label: '🏃 Jogging' },
@@ -17,7 +17,7 @@ const FILTER_OPTIONS: Array<{ value: 'all' | ActivityType; label: string }> = [
 
 export function History() {
   const { activities, isLoading, error, addActivity, removeActivity } = useActivities()
-  const [filter, setFilter]       = useState<'all' | ActivityType>('all')
+  const [filter, setFilter]         = useState<'all' | ActivityType>('all')
   const [isFormOpen, setIsFormOpen] = useState(false)
 
   const filtered: ActivityLog[] = filter === 'all'
@@ -29,10 +29,9 @@ export function History() {
   }
 
   return (
-    <main className="page-scroll scrollbar-thin">
-
-      <header className="px-4 pt-12 pb-4">
-        <h1 className="text-3xl font-extrabold text-white">
+    <div className="min-h-dvh page-scroll scrollbar-thin">
+      <header className="px-4 md:px-8 pt-10 md:pt-14 pb-4 max-w-5xl">
+        <h1 className="text-3xl lg:text-4xl font-extrabold text-white">
           Activity <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">History</span>
         </h1>
         <p className="text-sm text-white/40 mt-1">
@@ -40,8 +39,7 @@ export function History() {
         </p>
       </header>
 
-      <div className="px-4 flex flex-col gap-4 pb-4">
-
+      <div className="px-4 md:px-8 pb-24 md:pb-8 max-w-5xl flex flex-col gap-4">
         <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-thin">
           {FILTER_OPTIONS.map(opt => (
             <button
@@ -84,7 +82,10 @@ export function History() {
         )}
       </div>
 
-      <div className="fixed bottom-20 right-4 z-30" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      <div
+        className="fixed bottom-20 right-4 md:bottom-8 md:right-8 z-30"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
         <Button
           onClick={() => setIsFormOpen(true)}
           size="lg"
@@ -101,6 +102,6 @@ export function History() {
         onClose={() => setIsFormOpen(false)}
         onSubmit={handleSubmit}
       />
-    </main>
+    </div>
   )
 }

@@ -42,8 +42,8 @@
   }
 
   .page-scroll {
-    @apply flex-1 overflow-y-auto;
-    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 }
 
